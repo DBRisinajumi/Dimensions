@@ -47,7 +47,7 @@ abstract class ADimension
      */
     public function setPeriodType($sPeriodType)
     {
-        $sPeriodClass = '\\DBRisinajumi\\Dimension\\Periods\\'.ucfirst($sPeriodType);
+        $sPeriodClass = '\\DBRisinajumi\\Dimensions\\Periods\\'.ucfirst($sPeriodType);
         if (class_exists($sPeriodClass)) {
             $this->sPeriodType = $sPeriodType;
             $this->current_period = new $sPeriodClass();
