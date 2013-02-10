@@ -6,8 +6,8 @@ php:
   - 5.5
 services: mysql
 before_script:
-  - mysql -u root -p -h 127.0.0.1 -e 'create database dimensions_test;'
+  - mysql -u root -h 127.0.0.1 -e 'create database dimensions_test;'
   - composer install --dev --prefer-source
-  - mysql -u root -p -h 127.0.0.1 < structure.sql
+  - mysql -u root -h 127.0.0.1 dimensions_test < structure.sql
 
 script: phpunit --bootstrap tests/bootstrap.php --configuration tests/configuration.xml
