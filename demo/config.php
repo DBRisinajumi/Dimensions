@@ -1,10 +1,10 @@
 <?php
  return array(
     'db' => array(
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'user' => 'root',
         'password' => '',
-        'database' => 'dim_demo',
+        'database' => 'dimensions_test',
         'port' => '3306'
     ),
     'levels' => 3,
