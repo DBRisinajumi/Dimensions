@@ -21,6 +21,7 @@ class DataTest extends \PHPUnit_Framework_TestCase {
     protected function setUp() {
         $Database = new \mysqli(TEST_DB_HOST, TEST_DB_USER, TEST_DB_PASSWORD, TEST_DB);
         $oPeriod = new Period($Database);
+        $oPeriod->setPeriodType('monthly');
         $this->object = new Data($Database, $oPeriod);
         $sSql = "INSERT INTO `dim_table` (`id`, `table_name`) VALUES (1, 'test_table')";
         $this->object->getDbConnection()->query($sSql);
