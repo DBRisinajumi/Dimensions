@@ -1,4 +1,4 @@
-DBRisinajumi\Dimension [![Build Status](https://secure.travis-ci.org/DBRisinajumi/Dimension.png)](http://travis-ci.org/DBRisinajumi/Dimension)
+DBRisinajumi\Dimensions [![Build Status](https://secure.travis-ci.org/DBRisinajumi/Dimensions.png?branch=master)](http://travis-ci.org/DBRisinajumi/Dimensions)
 ==============
 
 Existing data splitting by categories and time periods and aggregating results in reports
