@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+
+@author Juris Malinens<juris.malinens@inbox.lv>
+@version 0.1
+-->
+
+<!-- see http://www.phpunit.de/wiki/Documentation -->
+<phpunit bootstrap="bootstrap.php"
+         colors="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnFailure="true">
+</phpunit>

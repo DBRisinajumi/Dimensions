@@ -1,0 +1,30 @@
+{
+    "name": "DBRisinajumi/Dimensions",
+    "type": "library",
+    "description": "Data splitting by categories and time periods to make better reports",
+    "keywords": ["sorting","reports","periods","categories","multi-level","dimensions"],
+    "homepage": "https://github.com/DBRisinajumi/Dimensions",
+    "license": "LGPLv3",
+    "authors": [
+        {
+            "name": "Uldis Nelsons",
+            "email": "uldisnelsons@gmail.com",
+            "role": "Software architect"
+        },
+        {
+            "name": "Juris Malinens",
+            "email": "juris.malinens@inbox.lv",
+            "homepage": "http://jurismalinens.wordpress.come",
+            "role": "Developer"
+        },
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-mysqli": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Dimensions": "src/"
+        }
+    }
+}
