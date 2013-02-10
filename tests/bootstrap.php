@@ -1,6 +1,6 @@
 <?php
 $cfg = include dirname(__FILE__).'/../demo/config.php';
-require include dirname(__FILE__).'/../src/Dimension/DimAutoload.php';
+require include dirname(__FILE__).'/../src/Dimensions/DimAutoload.php';
 DimAutoload::register();
 $Database = new \mysqli(
     $cfg['db']['host'],
