@@ -1,7 +1,7 @@
 <?php
 $cfg = include 'config.php';
-require '../src/Dimension/DimAutoload.php';
-DimAutoload::register();
+require '../src/DBRisinajumi/Dimensions/DimAutoload.php';
+\DBRisinajumi\Dimensions\DimAutoload::register();
 $Database = new \mysqli(
     $cfg['db']['host'],
     $cfg['db']['user'],

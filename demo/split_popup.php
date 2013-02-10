@@ -5,9 +5,9 @@
  * @author Juris Malinens <juris.malinens@inbox.lv>
  * @author Uldis Nelsons <uldisnelsons@gmail.com>
  */
-use DBRisinajumi\Dimension\Period;
-use DBRisinajumi\Dimension\Data;
-use DBRisinajumi\Dimension\Level;
+use DBRisinajumi\Dimensions\Period;
+use DBRisinajumi\Dimensions\Data;
+use DBRisinajumi\Dimensions\Level;
 
 if (!isset($_REQUEST['table_id']) || !isset($_REQUEST['record_id']) || !isset($_REQUEST['amt'])) {
     echo "not all params provided";

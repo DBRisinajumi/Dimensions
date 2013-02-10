@@ -19,7 +19,7 @@ require 'views/split_header.php';
 <?php
 require 'init.php';
 
-$oTable = new \DBRisinajumi\Dimension\Table($Database);
+$oTable = new \DBRisinajumi\Dimensions\Table($Database);
 $nTableId = $oTable->getTableIdByName('dim_sample_bank_trans');
 
 $sSql = "SELECT id, acc_holder, balance, amount, message FROM dim_sample_bank_trans";

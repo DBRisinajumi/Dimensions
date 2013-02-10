@@ -8,10 +8,10 @@
 header('Content-Type: text/html; charset=utf-8');
 header("Cache-Control: no-cache, must-revalidate");
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-use \DBRisinajumi\Dimension\Level;
-use \DBRisinajumi\Dimension\Table;
-use \DBRisinajumi\Dimension\Data;
-use \DBRisinajumi\Dimension\Period;
+use \DBRisinajumi\Dimensions\Level;
+use \DBRisinajumi\Dimensions\Table;
+use \DBRisinajumi\Dimensions\Data;
+use \DBRisinajumi\Dimensions\Period;
 
 $sAction = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'get_tree';
 $nLevel = isset($_REQUEST['level']) ? (int)$_REQUEST['level'] : 1;

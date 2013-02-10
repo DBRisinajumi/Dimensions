@@ -30,7 +30,7 @@
 <?php
 require 'init.php';
 
-$Report = new \DBRisinajumi\Dimension\ReportExample($Database);
+$Report = new \DBRisinajumi\Dimensions\ReportExample($Database);
 $Report->setPeriodType('monthly');
 
 $nLevel = isset($_GET['level']) ? (int)$_GET['level'] : 1;

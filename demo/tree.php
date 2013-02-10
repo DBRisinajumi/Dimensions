@@ -5,7 +5,7 @@
  * @author Juris Malinens <juris.malinens@inbox.lv>
  * @author Uldis Nelsons <uldisnelsons@gmail.com>
  */
-use \DBRisinajumi\Dimension\Level;
+use \DBRisinajumi\Dimensions\Level;
 
 $sViewMode = isset($_GET['view_mode']) ? $_GET['view_mode'] : 'tree';
 $sAction = isset($_GET['action']) ? $_GET['action'] : 'get_tree';
