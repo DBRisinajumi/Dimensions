@@ -2,7 +2,7 @@
     "name": "dbrisinajumi/dimensions",
     "type": "library",
     "description": "Data splitting by categories and time periods to make better reports",
-    "keywords": ["sorting","reports","periods","categories","multi-level","dimensions"],
+    "keywords": ["reports","periods","categories","multi-level","sorting","splitting","dimensions"],
     "homepage": "https://github.com/DBRisinajumi/Dimensions",
     "license": "MIT",
     "authors": [

@@ -36,7 +36,6 @@ class Level extends \DBRisinajumi\Dimensions\ADimension
     private function validateFields($nLevel, $sCode, $sLabel, $nHidden, $nLevelsTableId)
     {
         $bReturn = true;
-        //pārbaudes
         if (empty($sCode)) {
             $this->aErrors[] = 'code can not be empty';
             $bReturn = false;

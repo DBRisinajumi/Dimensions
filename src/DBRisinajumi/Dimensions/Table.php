@@ -142,4 +142,147 @@ class Table extends \DBRisinajumi\Dimensions\ADimension
 
         return $aR;
     }
+
+    /**
+     * validate level, code and label
+     * 
+     * @todo finish validator
+     * @param string $sTableName
+     * @param string $sLabel
+     * @param string $sTableName
+     * @param string $sTableIdField
+     * @return boolean
+     */
+    private function validateFields($sTableName, $sLabel, $sTableType, $sTableIdField)
+    {
+        $bReturn = true;
+        if (empty($sTableName)) {
+            $this->aErrors[] = 'table name can not be empty';
+            $bReturn = false;
+        }
+        if (empty($sLabel)) {
+            $this->aErrors[] = 'label can not be empty';
+            $bReturn = false;
+        }
+
+        $sSql = "
+        SELECT
+            table_name
+        FROM
+            information_schema.tables
+        WHERE
+            table_schema = '{$this->db->name}' AND table_name = '{$this->db->escape($sTableName)}';";
+        $q = $this->db->query($sSql);
+        if ($q->num_rows == 0) {
+            $this->aErrors[] = 'table '.htmlspecialchars().' does not exist';
+            $bReturn = false;
+        }
+
+        return $bReturn;
+    }
+    
+    /**
+     * add table
+     * 
+     * @param string $sLabel
+     * @param string $sTableName
+     * @param string $sTableIdField
+     * @param string $sSqlReport
+     * @param string $sSqlSelect
+     * @return int - new table id
+     */
+    public function addTable($sTableName, $sLabel, $sTableType, $sTableIdField = "id", $sSqlReport = "", $sSqlSelect = "")
+    {
+        if (!in_array($sTableType, $this->aTableTypes)) {
+            $this->aErrors[] =  'wrong table type: '.htmlspecialchars($sTableType);
+            
+            return false;
+        }
+        $sSql = "INSERT INTO dim_table
+        (
+        `label`,
+        `table_type`
+        `table_name`,
+        `table_id_field`,
+        `report_select`,
+        `level_select`
+        ) VALUES (
+        '{$this->db->escape($sLabel)}',
+        '{$this->db->escape($sLabel)}',
+        '{$this->db->escape($sTableName)}',
+        '{$this->db->escape($sTableIdField)}',
+        '{$this->db->escape($sSqlReport)}',
+        '{$this->db->escape($sSqlSelect)}')";
+        $this->db->query($sSql) or error_log($this->db->error);
+
+        return $this->db->insert_id;
+    }
+    
+    private function tableIdExists($nTableId)
+    {
+        $sSql = "
+        SELECT
+            table_name
+        FROM
+            dim_table
+        WHERE
+            id = {$this->db->escape_string($nTableId)}";
+        $q = $this->db->query($sSql);
+        if ($q->num_rows == 0) {
+            $this->aErrors[] = 'table id '.$this->db->escape_string($nTableId).' is not registered in dim_table';
+
+            return false;
+        }
+
+        return true;
+    }
+    
+    /**
+     * update table columns
+     * 
+     * @param int $nTableId
+     * @param string $sTableName
+     * @param string $sLabel
+     * @param string $sTableIdField
+     * @param string $sSqlReport
+     * @param string $sSqlSelect
+     * @return boolean
+     */
+    public function updateTable($nTableId, $sTableName, $sLabel, $sTableIdField = "id", $sSqlReport = "", $sSqlSelect = "")
+    {
+        if (!$this->tableIdExists($nTableId)) {
+ 
+            return false;
+        }
+        $sSql = "
+        UPDATE
+            dim_table
+        SET
+            `label` = '{$this->db->escape($sLabel)}',
+            `table_name` = '{$this->db->escape($sTableName)}',
+            `table_id_field` = '{$this->db->escape($sTableIdField)}',
+            `report_select` = '{$this->db->escape($sSqlReport)}',
+            `level_select` = '{$this->db->escape($sSqlSelect)}'
+        WHERE
+            id = {$this->db->escape($nTableId)}";
+
+        return (boolean)$this->db->query($sSql);
+    }
+    
+    /**
+     * delete table record by table id
+     * 
+     * @param int $nTableId
+     * @return boolean
+     */
+    public function deleteTable($nTableId)
+    {
+        if (!$this->tableIdExists($nTableId)) {
+ 
+            return false;
+        }
+        $sSql = "DELETE FROM dim_table WHERE id = $nTableId";
+
+        return (boolean)$this->db->query($sSql);
+    }
 }
