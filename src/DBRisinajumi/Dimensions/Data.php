@@ -144,35 +144,6 @@ class Data extends \DBRisinajumi\Dimensions\ADimension
     }
 
     /**
-     * get dim_data id if we know table id and record id
-     * 
-     * @param string $sTable
-     * @param int $nRecordId
-     * @return boolean|int
-     */
-    public function getDimDataId($sTable, $nRecordId)
-    {
-        $sSql = "SELECT
-            dim_data.id
-        FROM
-            dim_data
-        INNER JOIN dim_table ON
-            (dim_table.table_name = '{$this->db->escape_string($sTable)}')
-        WHERE
-            dim_data.record_id = {$this->db->escape_string($nRecordId)}
-        ";
-        //echo $sSql;
-        $q = $this->db->query($sSql);
-        if ($q->num_rows == 0) {
-
-            return false;
-        }
-        $row = $q->fetch_assoc();
-
-        return (int)$row['id'];
-    }
-
-    /**
      * get date format in which user enters dates
      * @param string $sFormatType - php or mysql
      * @return string

@@ -119,7 +119,7 @@ class Table extends \DBRisinajumi\Dimensions\ADimension
         $aR['select'] = "
         ,dim_data.l1_id dim_l1_id
         ,dim_data.l2_id dim_l2_id
-        ,dim_l3.dim_id  dim_l3_id
+        ,dim_data.l3_id  dim_l3_id
         ,dim_data.amt dim_amt
         ,DATE_FORMAT(dim_data.date_from, '{$this->sUserDateFormat}') dim_date_from
         ,DATE_FORMAT(dim_data.date_to, '{$this->sUserDateFormat}') dim_date_to

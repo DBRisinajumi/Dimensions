@@ -13,6 +13,8 @@ class DataTest extends \PHPUnit_Framework_TestCase {
     protected $object;
     
     private $nInsertId;
+    
+    CONST TEST_TABLE_ID = 1;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -23,7 +25,7 @@ class DataTest extends \PHPUnit_Framework_TestCase {
         $oPeriod = new Period($Database);
         $oPeriod->setPeriodType('monthly');
         $this->object = new Data($Database, $oPeriod);
-        $sSql = "INSERT INTO `dim_table` (`id`, `table_name`) VALUES (1, 'test_table')";
+        $sSql = "INSERT INTO `dim_table` (`id`, `table_name`) VALUES (".self::TEST_TABLE_ID.", 'test_table')";
         $this->object->getDbConnection()->query($sSql);
     }
 
@@ -85,10 +87,10 @@ class DataTest extends \PHPUnit_Framework_TestCase {
         );
     }
     
-    public function testGetDimDataId() {
+    public function testGetDimData() {
         $nRecordId = 700;
         $aNewRecord = array(
-            'table_id' => 1,
+            'table_id' => self::TEST_TABLE_ID,
             'record_id' => $nRecordId,
             'l1_id' => 1,
             'l2_id' => 2,
@@ -98,8 +100,21 @@ class DataTest extends \PHPUnit_Framework_TestCase {
             'date_to' => '01.03.2012'
         );
         $nDimDataId1 = $this->object->addRecord($aNewRecord);
-        $nDimDataId2 = $this->object->getDimDataId('test_table', $nRecordId);
-        $this->assertSame($nDimDataId1, $nDimDataId2);
+        $date_from = date_format(date_create_from_format('d.m.Y', '01.02.2012'), 'Y-m-d H:i:s');
+        $date_to = date_format(date_create_from_format('d.m.Y', '01.03.2012'), 'Y-m-d H:i:s');
+        $aAssumedDimDataResult = array(
+            'id' => $nDimDataId1,
+            'table_id' => self::TEST_TABLE_ID,
+            'record_id' => $nRecordId,
+            'l1_id' => 1,
+            'l2_id' => 2,
+            'l3_id' => 3,
+            'amt' => 100,
+            'date_from' => $date_from,
+            'date_to' => $date_to
+        );
+        $aRealDimDataResult = $this->object->getDimData(self::TEST_TABLE_ID, $nRecordId);
+        $this->assertEquals($aRealDimDataResult, $aAssumedDimDataResult);
     }
 
     public function testGetErrors() {

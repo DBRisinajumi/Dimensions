@@ -133,10 +133,8 @@ switch ($sAction) {
         $oData->setPeriodType('monthly');
         //get table_id
         $nTableId = $oTable->getTableIdByName($sTranTableName);
-
         //get existing dimension data record
-        $nDimDataId = $oData->getDimDataId($sTranTableName, $nRecordId);
-
+        $aDimData = $oData->getDimData($nTableId, $nRecordId);
         //fix level3 if it has external table
         $nL3Id = $oLevel->fixLevelId($oLevel::LEVEL_3, $nL2Id, $nL3Id);
 
@@ -150,12 +148,12 @@ switch ($sAction) {
             'date_from' => $dDateFrom,
             'date_to' => $dDateTo,
         );
-        if ($nDimDataId === false) {
+        if ($aDimData === false) {
             if (!$oData->addRecord($aData)) {
                 $aDirectJson['error'] = implode(PHP_EOL, $oData->getErrors());
             }
         } else {
-            if (!$oData->updateRecord($nDimDataId, $aData)) {
+            if (!$oData->updateRecord($aDimData['id'], $aData)) {
                 $aDirectJson['error'] = implode(PHP_EOL, $oData->getErrors());
             }
         }
