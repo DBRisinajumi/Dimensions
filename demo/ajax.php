@@ -19,7 +19,7 @@ $nParrentLevelId = isset($_REQUEST['parent_level_id']) ? (int)$_REQUEST['parent_
 
 require 'init.php';
 
-$nId = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : 0;
+$nId = isset($_REQUEST['id']) ? $_REQUEST['id'] : 0;
 $aDirectJson = array();
 
 $oLevel = new Level($Database);
@@ -53,7 +53,7 @@ switch ($sAction) {
         }
         break;
     case 'get_tree':
-        if ($nId == '0') {
+        if (empty($nId)) {
             $nLevel = 1;
             $nParrentLevelId = '';
         } else {

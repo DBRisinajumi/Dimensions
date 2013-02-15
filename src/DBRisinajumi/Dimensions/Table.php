@@ -171,7 +171,7 @@ class Table extends \DBRisinajumi\Dimensions\ADimension
         FROM
             information_schema.tables
         WHERE
-            table_schema = '{$this->db->name}' AND table_name = '{$this->db->escape($sTableName)}';";
+            table_schema = '{$this->db->name}' AND table_name = '{$this->db->escape_string($sTableName)}';";
         $q = $this->db->query($sSql);
         if ($q->num_rows == 0) {
             $this->aErrors[] = 'table '.htmlspecialchars().' does not exist';
@@ -207,12 +207,12 @@ class Table extends \DBRisinajumi\Dimensions\ADimension
         `report_select`,
         `level_select`
         ) VALUES (
-        '{$this->db->escape($sLabel)}',
-        '{$this->db->escape($sLabel)}',
-        '{$this->db->escape($sTableName)}',
-        '{$this->db->escape($sTableIdField)}',
-        '{$this->db->escape($sSqlReport)}',
-        '{$this->db->escape($sSqlSelect)}')";
+        '{$this->db->escape_string($sLabel)}',
+        '{$this->db->escape_string($sLabel)}',
+        '{$this->db->escape_string($sTableName)}',
+        '{$this->db->escape_string($sTableIdField)}',
+        '{$this->db->escape_string($sSqlReport)}',
+        '{$this->db->escape_string($sSqlSelect)}')";
         $this->db->query($sSql) or error_log($this->db->error);
 
         return $this->db->insert_id;
@@ -258,13 +258,13 @@ class Table extends \DBRisinajumi\Dimensions\ADimension
         UPDATE
             dim_table
         SET
-            `label` = '{$this->db->escape($sLabel)}',
-            `table_name` = '{$this->db->escape($sTableName)}',
-            `table_id_field` = '{$this->db->escape($sTableIdField)}',
-            `report_select` = '{$this->db->escape($sSqlReport)}',
-            `level_select` = '{$this->db->escape($sSqlSelect)}'
+            `label` = '{$this->db->escape_string($sLabel)}',
+            `table_name` = '{$this->db->escape_string($sTableName)}',
+            `table_id_field` = '{$this->db->escape_string($sTableIdField)}',
+            `report_select` = '{$this->db->escape_string($sSqlReport)}',
+            `level_select` = '{$this->db->escape_string($sSqlSelect)}'
         WHERE
-            id = {$this->db->escape($nTableId)}";
+            id = {$this->db->escape_string($nTableId)}";
 
         return (boolean)$this->db->query($sSql);
     }

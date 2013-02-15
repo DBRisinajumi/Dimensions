@@ -90,6 +90,10 @@ table.dim_table{
     text-shadow:1px 1px 1px #fff;
 }
 
+.dim_table tbody td li {
+    text-align:left;
+}
+
 form {
     
 }

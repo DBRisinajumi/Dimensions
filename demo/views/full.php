@@ -11,7 +11,7 @@
         <title>Define levels</title>
     </head>
 <body>
-
+    <a href="?view_mode=edit">Add root level</a>
 <table class="dim_table">
     <tr>
         <td id="dim_tree"></td>
