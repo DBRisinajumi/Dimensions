@@ -11,6 +11,7 @@ require 'views/split_header.php';
 <div>
     <h1>Dimension demo</h1>
 <ul>
+    <li><a href="reset.php">Reset demo</a></li>
     <li><a href="tree.php">Define level tree</a></li>
     <li><a href="table.php">Define tables</a></li>
     <li><a href="split.php">Split table transactions into many-level categories and define date range</a></li>
