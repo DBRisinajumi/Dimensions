@@ -129,6 +129,7 @@ switch ($sAction) {
         $dDateTo = $_REQUEST['date_to'];
 
         $oPeriod = new Period($Database);
+        $oPeriod->setPeriodType('monthly');
         $oData = new Data($Database, $oPeriod);
         $oData->setPeriodType('monthly');
         //get table_id

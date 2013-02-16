@@ -428,12 +428,11 @@ class Report extends \DBRisinajumi\Dimensions\ADimension
             // get table data
             $sSql = 'set @record_id = ' . $row['record_id'];
             $this->db->query($sSql);
-            if (!isset($row['report_select'])) {
-                //print_r($row);
-            }
-            $qTable = $this->db->query($row['report_select']);
-            if ($qTable->num_rows > 0) {
-                $row = $row + $qTable->fetch_array();
+            if (!empty($row['report_select'])) {
+                $qTable = $this->db->query($row['report_select']);
+                if ($qTable->num_rows > 0) {
+                    $row = $row + $qTable->fetch_array();
+                }
             }
 
             $aReturn[] = $row;

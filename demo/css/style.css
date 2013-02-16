@@ -103,3 +103,12 @@ input[type="text"] {
 input[type="button"], input[type="submit"] {
     
 }
+
+#dim_breadcrumb li {
+    float: left;
+    padding-left:20px;
+}
+#dim_breadcrumb {
+    list-style: none;
+    clear:both;
+}

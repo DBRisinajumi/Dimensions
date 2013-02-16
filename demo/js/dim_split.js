@@ -1,5 +1,5 @@
 function popitup(url) {
-	newwindow=window.open(url,'name','height=320,width=780');
+	newwindow=window.open(url,'name','height=320,width=820');
 	if (window.focus) {newwindow.focus()}
 	return false;
 }

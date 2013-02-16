@@ -20,6 +20,7 @@ $nRecordId = (int)$_GET['record_id'];
 $nAmt = (double)$_GET['amt'];
 
 $oPeriod = new Period($Database);
+$oPeriod->setPeriodType('monthly');
 $oData = new Data($Database, $oPeriod);
 $oLevel = new Level($Database);
 
