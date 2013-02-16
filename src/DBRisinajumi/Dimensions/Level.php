@@ -298,15 +298,18 @@ class Level extends \DBRisinajumi\Dimensions\ADimension
 
             if ($nLevel == 1) {
                 $sWhere = "";
+                $sParentLevelIdSql = " '0' as parent_level_id";
             } else {
                 $sWhere = "
                 WHERE
                     {$sParrentLevelField}_id = $nParrentLevelId
                 ";
+                $sParentLevelIdSql = " {$sParrentLevelField}_id as parent_level_id";
             }
             $sSql .= "
             SELECT
-                *
+                *,
+                $sParentLevelIdSql
             FROM
                 dim_l$nLevel
             $sWhere

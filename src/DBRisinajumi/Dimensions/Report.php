@@ -41,6 +41,36 @@ class Report extends \DBRisinajumi\Dimensions\ADimension
         $this->nYear = date('Y'); //default to current year
     }
     
+    public function getBreadcrumbs($nLevel, $nParentLevelId)
+    {
+        $nLevel = (int)$nLevel;
+        $nParentLevelId = (int)$nParentLevelId;
+        $aBreadCrumbs = array();
+        while ($nLevel > 1) {
+            $sParentLevelIdSql = $nLevel <= 2 ? " '0' " : " `l".($nLevel-2)."_id` ";
+            $sSql = "
+            SELECT
+                $sParentLevelIdSql as parent_level_id,
+                `code`
+            FROM
+                dim_l".($nLevel-1)."
+            WHERE
+                id = $nParentLevelId
+            ";
+            $q = $this->db->query($sSql) or error_log($this->db->error);
+            $row = $q->fetch_assoc();
+            $aBreadCrumbs[] = array(
+                'level' => $nLevel,
+                'parent_level_id' => $nParentLevelId,
+                'code' => $row['code']
+            );
+            $nParentLevelId = $row['parent_level_id'];
+            $nLevel--;
+        }
+
+        return array_reverse($aBreadCrumbs);
+    }
+    
     /**
      * get formatted amount of money
      * 
