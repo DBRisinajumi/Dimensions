@@ -34,8 +34,22 @@ if (!empty($aDimData['date_from'])) {
 if (!empty($aDimData['date_to'])) {
     $sDateTo = date($oData->getUserDateFormat(), strtotime($aDimData['date_to']));
 }
-require 'views/split_header.php';
+
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Set levels for items and split sums by periods</title>
+    <meta charset="utf8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/dim_split.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/add.css"/>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
+  </head>
+  <body>
 <form method="post" action="">
 <input type="hidden" id="record_id" name="record_id" value="<?=$nRecordId?>"/>
 <input type="hidden" id="table_id" name="table_id" value="<?=$nTableId?>"/>
@@ -50,8 +64,8 @@ require 'views/split_header.php';
         <th>Action</th>
     </tr>
 <tr>
-    <td><input name="dim_date_from" value="<?=$sDateFrom?>"/></td>
-    <td><input name="dim_date_to" value="<?=$sDateTo?>"/></td>
+    <td><input name="dim_date_from" value="<?=$sDateFrom?>" class="date" /></td>
+    <td><input name="dim_date_to" value="<?=$sDateTo?>" class="date" /></td>
     <td>
         <select name="dim_l1_id">
         <option value="0">-Select-</option>
@@ -78,7 +92,7 @@ foreach ($aLevel as $aLevelRecord) {
     if ($aLevelRecord['hidden']) {
         continue;
     }
-    $sHtmlSelected = $aDimData['l1_id'] == $aLevelRecord['id'] ? ' selected="selected"' : '';
+    $sHtmlSelected = $aDimData['l2_id'] == $aLevelRecord['id'] ? ' selected="selected"' : '';
     ?>
     <option value="<?=$aLevelRecord['id']?>"<?=$sHtmlSelected?>><?=$aLevelRecord['code']?></option>
     <?php
@@ -95,7 +109,7 @@ foreach ($aLevel as $aLevelRecord) {
     if ($aLevelRecord['hidden']) {
         continue;
     }
-    $sHtmlSelected = $aDimData['l1_id'] == $aLevelRecord['id'] ? ' selected="selected"' : '';
+    $sHtmlSelected = $aDimData['l3_id'] == $aLevelRecord['id'] ? ' selected="selected"' : '';
     ?>
     <option value="<?=$aLevelRecord['id']?>"<?=$sHtmlSelected?>><?=$aLevelRecord['code']?></option>
     <?php
@@ -109,5 +123,5 @@ foreach ($aLevel as $aLevelRecord) {
 </tr>
 </table>
 </form>
-<?php
-require 'views/split_footer.php';
+</body>
+</html>

@@ -1,15 +1,11 @@
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-        <script src="js/dim_tree.js"></script>
-    </head>
-<body>
+
 
 <form name="dim_add_root_form" id="dim_add_root_form" method="get" action="">
     <input type="hidden" name="action" id="action" value="add_root"/>
     <table class="form ui-styled-table">
-        <td colspan="2" class="section">Add new Dimension root level</td>
+        <tr>
+            <td colspan="2" class="section">Add new Dimension root level</td>
+        </tr>
         <tr>
             <th>Code</th>
             <td><input type="text" class="input-1" name="code" id="code"  /></td>
@@ -29,6 +25,3 @@
         </tr>
     </table>
 </form>
-
-</body>
-</html>
