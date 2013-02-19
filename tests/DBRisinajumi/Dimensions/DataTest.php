@@ -25,6 +25,13 @@ class DataTest extends \PHPUnit_Framework_TestCase {
         $oPeriod = new Period($Database);
         $oPeriod->setPeriodType('monthly');
         $this->object = new Data($Database, $oPeriod);
+        
+        $sSql = "DELETE FROM `dim_l1`";
+        $this->object->getDbConnection()->query($sSql);
+        $sSql = "DELETE FROM `dim_l2`";
+        $this->object->getDbConnection()->query($sSql);
+        $sSql = "DELETE FROM `dim_l3`";
+        $this->object->getDbConnection()->query($sSql);
         $sSql = "INSERT INTO `dim_table` (`id`, `table_name`) VALUES (".self::TEST_TABLE_ID.", 'test_table')";
         $this->object->getDbConnection()->query($sSql);
     }
@@ -111,7 +118,10 @@ class DataTest extends \PHPUnit_Framework_TestCase {
             'l3_id' => 3,
             'amt' => 100,
             'date_from' => $date_from,
-            'date_to' => $date_to
+            'date_to' => $date_to,
+            'l1_code' => null,
+            'l2_code' => null,
+            'l3_code' => null
         );
         $aRealDimDataResult = $this->object->getDimData(self::TEST_TABLE_ID, $nRecordId);
         $this->assertEquals($aRealDimDataResult, $aAssumedDimDataResult);
