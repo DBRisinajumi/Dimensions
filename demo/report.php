@@ -14,19 +14,9 @@ $Report = new \DBRisinajumi\Dimensions\ReportExample($Database);
 $Report->setPeriodType('monthly');
 $Report->setLevel($nLevel, $nParentLevelId);
 $aBreadcrumbs = $Report->getBreadcrumbs($nLevel, $nParentLevelId);
-
+$sTitle = "Report examples";
+require 'views/header.php';
 ?>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Report examples</title>
-    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
-    </head>
-<body>
 <?php if (!empty($bShowButton)) { ?>
     <input type="button" value="back" class="button-cancel" onclick="window.history.back();return false;"/>
 <?php } ?>
@@ -60,12 +50,12 @@ if (!empty($aBreadcrumbs)) {
 <?php } ?>
 </div>
 <?php
+echo "<h1>Dates horizontally</h1>";
+$Report->createGridDataHorizontalDates();
 
 echo "<h1>Dates vertically</h1>";
 $Report->createGridData();
 
-echo "<h1>Dates horizotnally</h1>";
-$Report->createGridDataHorizontalDates();
 if (isset($_GET['period_id'])) {
     $aItems = $Report->createListData($_GET['period_id'], $_GET['level'], $_GET['level_id']);
     echo '<ol>';
@@ -76,6 +66,4 @@ if (isset($_GET['period_id'])) {
     }
     echo '</ol>';
 }
-?>
-</body>
-</html>
+require 'views/footer.php';

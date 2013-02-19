@@ -22,8 +22,11 @@ if ($sAction == 'add_root') {
     unset($oLevel);
 }
 
+$sTitle = "Define levels";
+require 'views/header.php';
 if ($sViewMode == 'tree') {
-    require 'views/full.php';
+    require 'views/tree_form.php';
 } elseif ($sViewMode == 'edit') {
-    require 'views/form_add_root.php';
+    require 'views/tree_form_add_root.php';
 }
+require 'views/footer.php';

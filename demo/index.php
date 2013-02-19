@@ -5,11 +5,10 @@
  * @author Juris Malinens <juris.malinens@inbox.lv>
  * @author Uldis Nelsons <uldisnelsons@gmail.com>
  */
-require 'views/split_header.php';
+$sTitle = "PHP apckage \DBRisinajumi\Dimensions Demo Site";
+require 'views/header.php';
 ?>
-
-<div>
-    <h1>Dimension demo</h1>
+<h1>Dimension demo</h1>
 <ul>
     <li><a href="reset.php">Reset demo</a></li>
     <li><a href="tree.php">Define level tree</a></li>
@@ -17,8 +16,5 @@ require 'views/split_header.php';
     <li><a href="split.php">Split table transactions into many-level categories and define date range</a></li>
     <li><a href="report.php">View reports</a></li>
 </ul>
-</div>
-
-
 <?php
-require 'views/split_footer.php';
+require 'views/footer.php';

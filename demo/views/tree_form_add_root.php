@@ -1,11 +1,3 @@
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-        <script src="js/dim_tree.js"></script>
-    </head>
-<body>
-
 <form name="dim_add_root_form" id="dim_add_root_form" method="get" action="">
     <input type="hidden" name="action" id="action" value="add_root"/>
     <table class="form ui-styled-table">
@@ -29,6 +21,3 @@
         </tr>
     </table>
 </form>
-
-</body>
-</html>

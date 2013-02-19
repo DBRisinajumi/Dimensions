@@ -5,7 +5,8 @@
  * @author Juris Malinens <juris.malinens@inbox.lv>
  * @author Uldis Nelsons <uldisnelsons@gmail.com>
  */
-require 'views/split_header.php';
+$sTitle = "Table data which can eb categorized and split further";
+require 'views/header.php';
 ?>
 <table class="dim_table">
     <tr>
@@ -40,4 +41,4 @@ while($row = $q->fetch_assoc()) {
 ?>
 </table>
 <?php
-require 'views/split_footer.php';
+require 'views/footer.php';

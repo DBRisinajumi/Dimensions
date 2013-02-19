@@ -34,7 +34,8 @@ if (!empty($aDimData['date_from'])) {
 if (!empty($aDimData['date_to'])) {
     $sDateTo = date($oData->getUserDateFormat(), strtotime($aDimData['date_to']));
 }
-require 'views/split_header.php';
+$sTitle = "Set levels for items and split sums by periods";
+require 'views/header.php';
 ?>
 <form method="post" action="">
 <input type="hidden" id="record_id" name="record_id" value="<?=$nRecordId?>"/>
@@ -110,4 +111,4 @@ foreach ($aLevel as $aLevelRecord) {
 </table>
 </form>
 <?php
-require 'views/split_footer.php';
+require 'views/footer.php';
