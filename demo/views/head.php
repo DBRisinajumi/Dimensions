@@ -7,7 +7,6 @@
         <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <link rel="stylesheet" href="css/style.css"/>
-        <link rel="stylesheet" href="css/add.css"/>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
     </head>
     <body>

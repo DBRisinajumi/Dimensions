@@ -19,22 +19,28 @@ require 'views/header.php';
 ?>
 <?php if (!empty($bShowButton)) { ?>
     <input type="button" value="back" class="button-cancel" onclick="window.history.back();return false;"/>
-<?php } ?>
+<?php }
+
+$sHtmlBredCrumb = '
     <ul id="dim_breadcrumb">
         <li><a href="">Reports</a></li>
-<?php
+     ';
 if (!empty($aBreadcrumbs)) {
     foreach($aBreadcrumbs as $aBreadcrumb) {
-?>
+        $sHtmlBredCrumb .= '
     <li>
-    &lt; <a href="?level=<?=$aBreadcrumb['level']?>&amp;parent_level_id=<?=
-    $aBreadcrumb['parent_level_id']?>"><?=$aBreadcrumb['code']?></a>
+    &lt; <a href="?level='.$aBreadcrumb['level'].
+                '&amp;parent_level_id=' .  $aBreadcrumb['parent_level_id']
+         . '">' . $aBreadcrumb['code'] . '</a>
     </li>
-<?php
+    ';
     }
 }
+
+$sHtmlBredCrumb .= '</ul><br />';
+
 ?>
-    </ul>
+
     <div style="clear:both;width:100%;"></div>
 
 <div id="paging">
@@ -51,10 +57,12 @@ if (!empty($aBreadcrumbs)) {
 </div>
 <?php
 echo "<h1>Dates horizontally</h1>";
+echo $sHtmlBredCrumb;
 $Report->createGridDataHorizontalDates();
 
-echo "<h1>Dates vertically</h1>";
-$Report->createGridData();
+//echo "<h1>Dates vertically</h1>";
+//echo $sHtmlBredCrumb;
+//$Report->createGridData();
 
 if (isset($_GET['period_id'])) {
     $aItems = $Report->createListData($_GET['period_id'], $_GET['level'], $_GET['level_id']);

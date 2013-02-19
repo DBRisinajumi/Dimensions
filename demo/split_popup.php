@@ -110,5 +110,6 @@ foreach ($aLevel as $aLevelRecord) {
 </tr>
 </table>
 </form>
+<script src="js/dim_split.js"></script>
 <?php
 require 'views/footer.php';
