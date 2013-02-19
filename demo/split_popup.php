@@ -51,8 +51,8 @@ require 'views/header.php';
         <th>Action</th>
     </tr>
 <tr>
-    <td><input name="dim_date_from" value="<?=$sDateFrom?>"/></td>
-    <td><input name="dim_date_to" value="<?=$sDateTo?>"/></td>
+    <td><input name="dim_date_from" value="<?=$sDateFrom?>" class="date"/></td>
+    <td><input name="dim_date_to" value="<?=$sDateTo?>" class="date"/></td>
     <td>
         <select name="dim_l1_id">
         <option value="0">-Select-</option>
@@ -79,7 +79,7 @@ foreach ($aLevel as $aLevelRecord) {
     if ($aLevelRecord['hidden']) {
         continue;
     }
-    $sHtmlSelected = $aDimData['l1_id'] == $aLevelRecord['id'] ? ' selected="selected"' : '';
+    $sHtmlSelected = $aDimData['l2_id'] == $aLevelRecord['id'] ? ' selected="selected"' : '';
     ?>
     <option value="<?=$aLevelRecord['id']?>"<?=$sHtmlSelected?>><?=$aLevelRecord['code']?></option>
     <?php
@@ -96,7 +96,7 @@ foreach ($aLevel as $aLevelRecord) {
     if ($aLevelRecord['hidden']) {
         continue;
     }
-    $sHtmlSelected = $aDimData['l1_id'] == $aLevelRecord['id'] ? ' selected="selected"' : '';
+    $sHtmlSelected = $aDimData['l3_id'] == $aLevelRecord['id'] ? ' selected="selected"' : '';
     ?>
     <option value="<?=$aLevelRecord['id']?>"<?=$sHtmlSelected?>><?=$aLevelRecord['code']?></option>
     <?php

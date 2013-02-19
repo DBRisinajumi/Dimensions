@@ -1,0 +1,25 @@
+#menu li
+{
+    display: inline;
+    list-style-type: none;
+    padding-right: 20px;
+        padding:15px;
+-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: -moz-linear-gradient(left bottom , #9ED929 2%, #8BC642 51%, #7BC043 87%) repeat scroll 0 0 transparent;
+    border-bottom-left-radius: 5px;
+    border-color: #93CE37 #9ED929 #93CE37 #93CE37;
+    border-image: none;
+    border-style: solid;
+    border-top-left-radius: 5px;
+    border-width: 1px 3px 1px 1px;
+    color: #FFFFFF;
+    padding: 0 10px;
+    text-shadow: 1px 1px 1px #568F23;
+}
+
+input.date{
+    width: 70px;
+}

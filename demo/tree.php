@@ -22,11 +22,26 @@ if ($sAction == 'add_root') {
     unset($oLevel);
 }
 
+if ($sViewMode == 'tree') {
 $sTitle = "Define levels";
 require 'views/header.php';
-if ($sViewMode == 'tree') {
-    require 'views/tree_form.php';
+?>
+<a href="?view_mode=edit">Add root level</a>
+<table class="dim_table">
+    <tr>
+        <td id="dim_tree"></td>
+        <td id="dim_form"></td>
+    </tr>
+</table>
+<script src="js/jstree/jquery.jstree.js"></script>
+<script src="js/dim_tree.js"></script>
+<?php
 } elseif ($sViewMode == 'edit') {
-    require 'views/tree_form_add_root.php';
+$sTitle = "Add root level levels";
+require 'views/header.php';
+require 'views/tree_form_add_root.php';
+?>
+<script src="js/dim_tree.js"></script>
+<?php
 }
 require 'views/footer.php';

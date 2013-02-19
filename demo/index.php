@@ -5,16 +5,6 @@
  * @author Juris Malinens <juris.malinens@inbox.lv>
  * @author Uldis Nelsons <uldisnelsons@gmail.com>
  */
-$sTitle = "PHP apckage \DBRisinajumi\Dimensions Demo Site";
+$sTitle = "PHP package \DBRisinajumi\Dimensions Demo Site";
 require 'views/header.php';
-?>
-<h1>Dimension demo</h1>
-<ul>
-    <li><a href="reset.php">Reset demo</a></li>
-    <li><a href="tree.php">Define level tree</a></li>
-    <li><a href="table.php">Define tables</a></li>
-    <li><a href="split.php">Split table transactions into many-level categories and define date range</a></li>
-    <li><a href="report.php">View reports</a></li>
-</ul>
-<?php
 require 'views/footer.php';

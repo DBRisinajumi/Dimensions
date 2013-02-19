@@ -118,21 +118,30 @@ class Data extends \DBRisinajumi\Dimensions\ADimension
     public function getDimData($nTableId, $nRecordId)
     {
         $sSql = "
-        SELECT
-            `id`,
-            `table_id`,
-            `record_id`,
-            `l1_id`,
-            `l2_id`,
-            `l3_id`,
-            `amt`,
-            `date_from`,
-            `date_to`
-        FROM
-            dim_data
-        WHERE
-            dim_data.record_id = {$this->db->escape_string($nRecordId)} AND
-            dim_data.table_id = {$this->db->escape_string($nTableId)}
+            SELECT
+              dim_data.id,
+              `table_id`,
+              `record_id`,
+              dim_data.l1_id,
+              dim_data.l2_id,
+              dim_data.l3_id,
+              `amt`,
+              `date_from`,
+              `date_to`,
+              dim_l1.code l1_code,
+              dim_l2.code l2_code,
+              dim_l3.code l3_code
+            FROM
+              dim_data 
+              LEFT OUTER JOIN dim_l1
+                ON dim_data.l1_id = dim_l1.id
+              LEFT OUTER JOIN dim_l2
+                ON dim_data.l2_id = dim_l2.id
+              LEFT OUTER JOIN dim_l3
+                ON dim_data.l3_id = dim_l3.id
+            WHERE
+                dim_data.record_id = {$this->db->escape_string($nRecordId)} AND
+                dim_data.table_id = {$this->db->escape_string($nTableId)}
         ";
         $q = $this->db->query($sSql) or error_log($this->db->error);
         if ($q->num_rows == 0) {

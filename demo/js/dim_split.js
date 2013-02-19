@@ -15,13 +15,19 @@ var userInputDateFormatJquery = "dd.mm.yy";
 $("input[name=dim_date_from]").datepicker({
     changeMonth: true,
     changeYear: true,
-    dateFormat: userInputDateFormatJquery
+    dateFormat: userInputDateFormatJquery,
+    showOn: "button",
+    buttonImage: "images/calendar.gif",
+    buttonImageOnly: true
 });
 
 $("input[name=dim_date_to]").datepicker({
     changeMonth: true,
     changeYear: true,
-    dateFormat: userInputDateFormatJquery
+    dateFormat: userInputDateFormatJquery,
+    showOn: "button",
+    buttonImage: "images/calendar.gif",
+    buttonImageOnly: true
 });
 
 /**
@@ -179,7 +185,8 @@ function save_dimension(ResultSelector, table_name, record_id, l1_id, l2_id, l3_
             alert(data["error"]);
             return false;
         }
-
+        window.opener.location.reload(false);
+        window.close();
         return false;
     })
 }
