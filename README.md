@@ -1,6 +1,11 @@
 DBRisinajumi\Dimensions [![Build Status](https://secure.travis-ci.org/DBRisinajumi/Dimensions.png?branch=master)](http://travis-ci.org/DBRisinajumi/Dimensions)
 ==============
 
+Demo
+------------
+
+[dimensions.wap4.org live dimension demo](http://dimensions.wap4.org)
+
 Existing data splitting by categories and time periods and aggregating results in reports
 
 Uses
