@@ -11,6 +11,10 @@ defining date range for each record and generate consolidated reports for each c
 
 Can be used in ERP, CRM, finance systems.
 
+Demo
+------------
+
+Visit [dimension.wap4.org](http://dimension.wap4.org) for live demo
 
 Requirements
 ------------
