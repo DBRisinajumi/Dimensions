@@ -440,4 +440,59 @@ class Report extends \DBRisinajumi\Dimensions\ADimension
 
         return $aReturn;
     }
+
+    /**
+     * create label for beriod in format [from] - [to]
+     * 
+     * @param int $nPeriodId
+     * @return string
+     */
+    public function getPeriodLabel($nPeriodId){
+        $sSql = "
+            SELECT
+              CONCAT(
+                (
+                  CASE
+                    WHEN (
+                      dim_period.`period_type` = 'monthly'
+                    ) 
+                    THEN DATE_FORMAT(`date_from`, '%m.%Y') 
+                    ELSE DATE_FORMAT(`date_from`, '%U') 
+                  END
+                ),
+                ' - ',
+                (
+                  CASE
+                    WHEN (
+                      dim_period.`period_type` = 'monthly'
+                    ) 
+                    THEN DATE_FORMAT(`date_to`, '%m.%Y') 
+                    ELSE DATE_FORMAT(`date_to`, '%U') 
+                  END
+                )
+              ) period_label 
+            FROM
+              dim_period 
+            WHERE id =  ".$nPeriodId."
+ 
+                ";
+        $q = $this->db->query($sSql);
+        $a = $q->fetch_assoc();
+        return $a['period_label'];
+
+    }
+
+    /**
+     * get level code
+     *
+     * @param int $nLevel
+     * @param int $nLevelId
+     * @return string
+     */
+    public function getLevelCode($nLevel, $nLevelId){
+        $oL = new Level($this->db);
+        $aLI = $oL->getLevelItem($nLevel, $nLevelId);
+        return $aLI['code'];
+
+    }
 }

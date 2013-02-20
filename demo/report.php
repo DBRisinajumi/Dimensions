@@ -23,7 +23,7 @@ require 'views/header.php';
 
 $sHtmlBredCrumb = '
     <ul id="dim_breadcrumb">
-        <li><a href="">Reports</a></li>
+        <li><a href="report.php">Reports</a></li>
      ';
 if (!empty($aBreadcrumbs)) {
     foreach($aBreadcrumbs as $aBreadcrumb) {
@@ -65,13 +65,45 @@ $Report->createGridDataHorizontalDates();
 //$Report->createGridData();
 
 if (isset($_GET['period_id'])) {
+
+    $aItemsLabel = array();
+    $aItemsLabel['period_label'] = $Report->getPeriodLabel($_GET['period_id']);
+    $aItemsLabel['level_code'] = $Report->getLevelCode($_GET['level'], $_GET['level_id']);
+
     $aItems = $Report->createListData($_GET['period_id'], $_GET['level'], $_GET['level_id']);
-    echo '<ol>';
+    ?>
+    <br />
+    <table id="dimension_table" border="1" class="dim_table">
+        <tr>
+            <th colspan="7">
+                Items: Period <?=$aItemsLabel['period_label']?> / Level <?=$aItemsLabel['level_code']?>
+            </th>
+        </tr>
+        <tr>
+            <th>Doc number</th>
+            <th>RecordId</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Descr</th>
+            <th>Period Amunt</th>
+            <th>Full Amunt</th>
+        </tr>
+
+        <?
     foreach ($aItems as $aItem) {
-        echo '<li>table:'.$aItem['table_name'].',
-        record: '.$aItem['record_id'].',
-        sum:  '.$aItem['period_amt'].' ('.$aItem['amt'].')</li>';
+        ?>
+        <tr>
+            <td><?=$aItem['doc_number']?></td>
+            <td><?=$aItem['doc_id']?></td>
+            <td><?=$aItem['doc_type']?></td>
+            <td><?=$aItem['doc_date']?></td>
+            <td><?=$aItem['doc_item_descr']?></td>
+            <td><?=$aItem['period_amt']?></td>
+            <td><?=$aItem['amt']?></td>
+
+        </tr>
+        <?
     }
-    echo '</ol>';
+?></table><?
 }
 require 'views/footer.php';

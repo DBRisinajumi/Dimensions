@@ -2,7 +2,8 @@
 SQLyog Ultimate v10.5 
 MySQL - 5.5.28-MariaDB : Database - dimensions_test
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -42,7 +43,7 @@ insert  into `dim_sample_bank_trans`(`id`,`acc_holder`,`amount`,`message`) value
 
 /*Data for the table `dim_table` */
 
-insert  into `dim_table`(`id`,`table_type`,`label`,`table_name`,`table_id_field`,`report_select`,`level_select`) values (1,'transactions',NULL,'dim_sample_bank_trans','id',NULL,NULL);
+insert into `dim_table` (`id`, `table_type`, `label`, `table_name`, `table_id_field`, `report_select`, `level_select`) values('1','transactions',NULL,'dim_sample_bank_trans','id','SELECT \r\n  tr.id doc_number,\r\n  \'payment\' doc_type,\r\n  \'2013.01.01\' doc_date,\r\n  tr.id doc_id,\r\n  CONCAT_WS(\r\n    \' \',\r\n    tr.acc_holder,\r\n    \'-\',\r\n    tr.amount,\r\n    \' \',\r\n    tr.message\r\n  ) doc_item_descr \r\nFROM\r\n  dim_sample_bank_trans tr \r\n  LEFT OUTER JOIN dim_data \r\n    ON tr.id = dim_data.record_id \r\n    AND dim_data.table_id = 1 \r\nWHERE tr.id = @record_id ',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
