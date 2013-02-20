@@ -14,7 +14,7 @@ Can be used in ERP, CRM, finance systems.
 Demo
 ------------
 
-Visit [dimension.wap4.org](http://dimension.wap4.org) for live demo
+Visit [dimensions.wap4.org](http://dimension.wap4.org) for live demo
 
 Requirements
 ------------
