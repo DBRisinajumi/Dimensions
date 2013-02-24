@@ -215,7 +215,8 @@ class Level extends \DBRisinajumi\Dimensions\ADimension
             $sSql = "
             DELETE FROM dim_l3
             WHERE
-                l2_id = {$this->db->escape_string($nLevelId)}
+                l2_id = {$this->db->escape_string($nLevelId)} 
+                AND levels_table_id IS NOT NULL
             LIMIT 1
             ";
             $this->db->query($sSql) or error_log($this->db->error);
